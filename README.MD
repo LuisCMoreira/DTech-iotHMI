@@ -1,1 +1,2 @@
-https://labdeck.com/python-designer/dashboard/
+https://pypi.org/project/tkdesigner/
+
