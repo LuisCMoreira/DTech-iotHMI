@@ -1,0 +1,10 @@
+{
+    "robotData": {
+        "robotIp": "",
+        "robotComPort": 30001,
+        "robotSpecs": {
+            "serialN": "SN666",
+            "dataOfInstall": "SN666"
+        }
+    }
+}
