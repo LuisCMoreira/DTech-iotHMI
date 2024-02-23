@@ -2,11 +2,11 @@ import csv
 from datetime import datetime
 
 
-def mainLog( data):
+def mainLog(data, moreInfo):
     file_path = './logs/logFile.csv'
 
-    columns = [ 'Event', 'Time', 'Position']
-    data = [[data] + [datetime.now().strftime("%Y-%m-%d %H:%M:%S")] + ['axisposition']] 
+    columns = [ 'Data', 'Time', 'moreInfo']
+    data = [[data] + [datetime.now().strftime("%Y-%m-%d %H:%M:%S")] + [moreInfo]] 
 
     try:
         with open(file_path, 'a', newline='') as csvfile:

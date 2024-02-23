@@ -1,7 +1,7 @@
 import json
 
-def read_json_file():
-    file_path = 'configFile.json'
+def readJson():
+    file_path = './config/configFile.json'
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
@@ -13,8 +13,8 @@ def read_json_file():
         print(f"Error decoding JSON in '{file_path}': {e}")
         return None
 
-def get_value_from_nested_key(nested_key):
-    json_data = read_json_file()
+def getFromConfig(nested_key):
+    json_data = readJson()
     keys = nested_key.split('.')
     try:
         value = json_data

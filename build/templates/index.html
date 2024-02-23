@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Web Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('/static/name.png');
+            background-size: cover;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .image-button {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <div class="image-button" style="background-image: url('/static/name1.png');" onclick="onButtonClick(1)"></div>
+        <div class="image-button" style="background-image: url('/static/name2.png');" onclick="onButtonClick(2)"></div>
+        <div class="image-button" style="background-image: url('/static/name3.png');" onclick="onButtonClick(3)"></div>
+    </div>
+
+    <script>
+        function onButtonClick(buttonNumber) {
+            console.log("Button " + buttonNumber + " clicked");
+
+            // Use AJAX to send a request to the Flask server
+            fetch(`/button_click/${buttonNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    // Optionally, handle the result here
+                    // For example, if the result is a message, you can display it on the webpage
+                    // alert("Server response: " + data.result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Reload the page every second
+        setInterval(function() {
+            location.reload();
+        }, 10000);
+    </script>
+</body>
+</html>
