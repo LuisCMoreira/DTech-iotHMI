@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Web Page - Page 2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('/static/name.png'); /* Change the background image */
+            background-size: cover;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+        }
+
+        .image-button {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <div class="image-button" style="background-image: url('/static/name1on.png');" onclick="onButtonClick(4)"></div>
+        <div class="image-button" style="background-image: url('/static/name2on.png');" onclick="onButtonClick(5)"></div>
+        <div class="image-button" style="background-image: url('/static/name3on.png');" onclick="onButtonClick(6)"></div>
+    </div>
+
+    <!-- Button to navigate back to Page 1 -->
+    <a href="{{ url_for('index') }}">
+        <button>Navigate to Page 1</button>
+    </a>
+
+    <script>
+        function onButtonClick(buttonNumber) {
+            console.log("Button " + buttonNumber + " clicked");
+
+            // Use AJAX to send a request to the Flask server
+            fetch(`/button_click/${buttonNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    // Optionally, handle the result here
+                    // For example, if the result is a message, you can display it on the webpage
+                    // alert("Server response: " + data.result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        // Reload the page every second
+        setInterval(function() {
+            location.reload();
+        }, 10000);
+    </script>
+</body>
+</html>

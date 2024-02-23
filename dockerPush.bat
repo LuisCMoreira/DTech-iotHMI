@@ -1,4 +1,8 @@
 @echo off
+docker stop tflaskhmi
+docker rm tflaskhmi
+docker rmi lcmoreira/tflaskhmi:latest
+
 cd "./build"
 docker build -t hmiapp .
 cd ..

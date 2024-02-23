@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Web Page</title>
+    <title>Flask Web Page - Page 1</title>
     <style>
         body {
             margin: 0;
@@ -11,12 +11,15 @@
             overflow: hidden;
             background-image: url('/static/name.png');
             background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .button-container {
             display: flex;
-            justify-content: space-around;
-            margin-top: 50px;
+            justify-content: center;
+            margin-top: 150px;
         }
 
         .image-button {
@@ -25,32 +28,82 @@
             background-size: cover;
             cursor: pointer;
         }
+
+        .output-container {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff; /* Set the desired background color */
+            border-radius: 5px; /* Optional: Add rounded corners */
+        }
+
+        a {
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="button-container">
-        <div class="image-button" style="background-image: url('/static/name1.png');" onclick="onButtonClick(1)"></div>
-        <div class="image-button" style="background-image: url('/static/name2.png');" onclick="onButtonClick(2)"></div>
-        <div class="image-button" style="background-image: url('/static/name3.png');" onclick="onButtonClick(3)"></div>
+        <div class="image-button" id="button1" onclick="onButtonClick(1)"></div>
+        <div class="image-button" id="button2" onclick="onButtonClick(2)"></div>
+        <div class="image-button" id="button3" onclick="onButtonClick(3)"></div>
     </div>
 
+    <!-- Output containers -->
+    <div class="output-container" style="background-color: #ffcccb;"> <!-- Set the desired background color -->
+        Image 1: <span id="output1">Visible</span>
+    </div>
+    <div class="output-container" style="background-color: #c2f0c2;"> <!-- Set the desired background color -->
+        Image 2: <span id="output2">Visible</span>
+    </div>
+    <div class="output-container" style="background-color: #c6e2ff;"> <!-- Set the desired background color -->
+        Image 3: <span id="output3">Visible</span>
+    </div>
+
+    <!-- Button to navigate to Page 2 -->
+    <a href="{{ url_for('config_page') }}">
+        <button>Navigate to Page 2</button>
+    </a>
+
     <script>
+        // Initialize booleans for images
+        let image1Visible = true;
+        let image2Visible = true;
+        let image3Visible = true;
+
+        // Initial setup of images based on booleans
+        updateButtonImage('button1', image1Visible);
+        updateButtonImage('button2', image2Visible);
+        updateButtonImage('button3', image3Visible);
+
         function onButtonClick(buttonNumber) {
             console.log("Button " + buttonNumber + " clicked");
 
-            // Use AJAX to send a request to the Flask server
-            fetch(`/button_click/${buttonNumber}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
+            // Toggle images based on buttonNumber
+            if (buttonNumber === 1) {
+                image1Visible = !image1Visible;
+                updateButtonImage('button1', image1Visible);
+            } else if (buttonNumber === 2) {
+                image2Visible = !image2Visible;
+                updateButtonImage('button2', image2Visible);
+            } else if (buttonNumber === 3) {
+                image3Visible = !image3Visible;
+                updateButtonImage('button3', image3Visible);
+            }
 
-                    // Optionally, handle the result here
-                    // For example, if the result is a message, you can display it on the webpage
-                    // alert("Server response: " + data.result);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+            // Set images based on boolean values
+            document.getElementById('output1').innerText = image1Visible ? 'Visible' : 'Hidden';
+            document.getElementById('output2').innerText = image2Visible ? 'Visible' : 'Hidden';
+            document.getElementById('output3').innerText = image3Visible ? 'Visible' : 'Hidden';
+        }
+
+        // Function to update button image based on boolean value
+        function updateButtonImage(buttonId, isVisible) {
+            const button = document.getElementById(buttonId);
+            button.style.backgroundImage = isVisible ? "url('/static/name" + buttonId.charAt(buttonId.length - 1) + "on.png')" : "url('/static/name" + buttonId.charAt(buttonId.length - 1) + "off.png')" ;
         }
 
         // Reload the page every second

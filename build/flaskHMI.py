@@ -13,6 +13,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/config')
+def config_page():
+    return render_template('config.html')
+
 @app.route('/button_click/<int:button_number>')
 def button_click(button_number):
     # Call the Python function from your package
