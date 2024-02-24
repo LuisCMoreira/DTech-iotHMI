@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Web Page - Page 2</title>
+    <title>Configurations</title>
     <style>
         body {
             margin: 0;
@@ -20,23 +20,38 @@
         }
 
         .image-button {
-            width: 150px;
-            height: 150px;
+            width: 50px;
+            height: 50px;
             background-size: cover;
             cursor: pointer;
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        a {
+            margin-top: 10px;
+
+        }
+
+        button {
+            margin-top: 10px;
+            margin-left: 300px;
+            width: 150px;
+            height: 50px;
+            background-color: #989898; /* Set the desired background color */
+            border-radius: 15px; /* Optional: Add rounded corners */
+
         }
     </style>
 </head>
 <body>
     <div class="button-container">
         <div class="image-button" style="background-image: url('/static/name1on.png');" onclick="onButtonClick(4)"></div>
-        <div class="image-button" style="background-image: url('/static/name2on.png');" onclick="onButtonClick(5)"></div>
-        <div class="image-button" style="background-image: url('/static/name3on.png');" onclick="onButtonClick(6)"></div>
     </div>
 
     <!-- Button to navigate back to Page 1 -->
     <a href="{{ url_for('index') }}">
-        <button>Navigate to Page 1</button>
+        <button>Home</button>
     </a>
 
     <script>

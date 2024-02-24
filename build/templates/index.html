@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Web Page - Page 1</title>
+    <title>Control Home</title>
     <style>
         body {
             margin: 0;
@@ -19,53 +19,91 @@
         .button-container {
             display: flex;
             justify-content: center;
-            margin-top: 150px;
+            margin-top: 50px;
         }
 
-        .image-button {
+        .image-button-big {
+            margin-left: 50px;
+            margin-right: 50px;
             width: 150px;
-            height: 150px;
+            height: 100px;
             background-size: cover;
             cursor: pointer;
         }
 
-        .output-container {
+        .image-button-small {
+            margin-left: 0px;
+            margin-right: 0px;
+            width: 50px;
+            height: 100px;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        .output-container1 {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            width: 150px;
+            height: 100px;
+            background-color: #fff; /* Set the desired background color */
+            border-radius: 5px; /* Optional: Add rounded corners */
+        }
+
+        .image {
             margin-top: 10px;
-            padding: 10px;
+            max-width: 500px; /* Ensure the image doesn't exceed its container */
+            height: auto; /* Maintain the image's aspect ratio */
+        }
+
+        .output-container2 {
+            margin-top: 10px;
+            width: 400px;
+            height: 100px;
             background-color: #fff; /* Set the desired background color */
             border-radius: 5px; /* Optional: Add rounded corners */
         }
 
         a {
-            margin-top: 20px;
+            margin-top: 10px;
+
         }
 
         button {
-            margin-top: 20px;
+            margin-top: 10px;
+            margin-left: 300px;
+            width: 150px;
+            height: 50px;
+            background-color: #989898; /* Set the desired background color */
+            border-radius: 15px; /* Optional: Add rounded corners */
+
         }
     </style>
 </head>
 <body>
+
+
+
     <div class="button-container">
-        <div class="image-button" id="button1" onclick="onButtonClick(1)"></div>
-        <div class="image-button" id="button2" onclick="onButtonClick(2)"></div>
-        <div class="image-button" id="button3" onclick="onButtonClick(3)"></div>
+        <div class="image-button-big" id="button1" onclick="onButtonClick(1)"></div>
+        
+        <!-- Output containers -->
+        <div class="output-container1" style="background-color: #ffcccb;"> <!-- Set the desired background color -->
+            Image 1: <span id="output1">Visible</span>
+        </div>
+        
+        <div class="image-button-small" id="button2" onclick="onButtonClick(2)"></div>
+        <div class="image-button-big" id="button3" onclick="onButtonClick(3)"></div>
     </div>
 
-    <!-- Output containers -->
-    <div class="output-container" style="background-color: #ffcccb;"> <!-- Set the desired background color -->
-        Image 1: <span id="output1">Visible</span>
-    </div>
-    <div class="output-container" style="background-color: #c2f0c2;"> <!-- Set the desired background color -->
-        Image 2: <span id="output2">Visible</span>
-    </div>
-    <div class="output-container" style="background-color: #c6e2ff;"> <!-- Set the desired background color -->
+    <img src="./static/name0.png" alt="Some Image" class="image">
+
+    <div class="output-container2" style="background-color: #c6e2ff;"> <!-- Set the desired background color -->
         Image 3: <span id="output3">Visible</span>
     </div>
 
     <!-- Button to navigate to Page 2 -->
     <a href="{{ url_for('config_page') }}">
-        <button>Navigate to Page 2</button>
+        <button>Configurations</button>
     </a>
 
     <script>
