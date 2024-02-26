@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background-image: url('/static/name.png');
+            background-image: url('/static/background.png');
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -24,41 +24,42 @@
 
         .image-button-big {
             margin-left: 50px;
-            margin-right: 50px;
+            margin-right: 0px;
             width: 150px;
-            height: 100px;
+            height: 150px;
             background-size: cover;
             cursor: pointer;
         }
 
         .image-button-small {
-            margin-left: 0px;
+            margin-left: 50px;
             margin-right: 0px;
-            width: 50px;
-            height: 100px;
+            width: 100px;
+            height: 150px;
             background-size: cover;
             cursor: pointer;
         }
 
         .output-container1 {
-            margin-top: 0px;
+            margin-left: 50px;
+            margin-top: 10px;
             margin-bottom: 0px;
-            width: 150px;
-            height: 100px;
+            width: 250px;
+            height: 80px;
             background-color: #fff; /* Set the desired background color */
             border-radius: 5px; /* Optional: Add rounded corners */
         }
 
         .image {
             margin-top: 10px;
-            max-width: 500px; /* Ensure the image doesn't exceed its container */
+            max-width: 400px; /* Ensure the image doesn't exceed its container */
             height: auto; /* Maintain the image's aspect ratio */
         }
 
         .output-container2 {
             margin-top: 10px;
-            width: 400px;
-            height: 100px;
+            width: 600px;
+            height: 40px;
             background-color: #fff; /* Set the desired background color */
             border-radius: 5px; /* Optional: Add rounded corners */
         }
@@ -69,8 +70,9 @@
         }
 
         button {
-            margin-top: 10px;
-            margin-left: 300px;
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
             width: 150px;
             height: 50px;
             background-color: #989898; /* Set the desired background color */
@@ -141,7 +143,14 @@
         // Function to update button image based on boolean value
         function updateButtonImage(buttonId, isVisible) {
             const button = document.getElementById(buttonId);
-            button.style.backgroundImage = isVisible ? "url('/static/name" + buttonId.charAt(buttonId.length - 1) + "on.png')" : "url('/static/name" + buttonId.charAt(buttonId.length - 1) + "off.png')" ;
+
+            imageDict = {}
+            imageDict["1"] = "play"
+            imageDict["2"] = "pause"
+            imageDict["3"] = "stop"
+
+
+            button.style.backgroundImage = isVisible ? "url('/static/" + imageDict[buttonId.charAt(buttonId.length - 1)] + "ON.png')" : "url('/static/" + imageDict[buttonId.charAt(buttonId.length - 1)] + "OFF.png')" ;
         }
 
         // Reload the page every second
