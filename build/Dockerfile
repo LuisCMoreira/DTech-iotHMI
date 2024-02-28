@@ -1,4 +1,5 @@
 # Use an official Python runtime as a parent image
+# set image arm64v8 or arm32v7 for linux (e.g. arm32v7/python:3.8-slim)
 FROM python:3.8-slim
 
 # Set the working directory to /app

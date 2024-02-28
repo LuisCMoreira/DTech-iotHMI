@@ -41,6 +41,6 @@ echo "Script executed successfully."
 # Run Docker container in the background
 docker run -d -p 8080:5004 -v "$script_dir/logs:/app/logs" -v "$script_dir/config:/app/config" --name tflaskhmi $docker_image
 
-# Kill any existing Chrome processes and start Chrome in fullscreen mode
-pkill chrome
-google-chrome --start-fullscreen http://localhost:8080
+# Kill any existing Chromium processes and start Chromium in fullscreen mode
+pkill chromium-browser
+sudo -u $non_root_user chromium-browser --no-sandbox --start-fullscreen http://localhost:8080
