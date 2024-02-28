@@ -43,4 +43,6 @@ docker run -d -p 8080:5004 -v "$script_dir/logs:/app/logs" -v "$script_dir/confi
 
 # Kill any existing Chromium processes and start Chromium in fullscreen mode
 pkill chromium-browser
+
+# change $non_root_user to actual user
 sudo -u $non_root_user chromium-browser --no-sandbox --start-fullscreen http://localhost:8080
